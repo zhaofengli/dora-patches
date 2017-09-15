@@ -1,0 +1,33 @@
+From eb401c4d00cc8d6daaf2623a4bd2a5ccd755d24d Mon Sep 17 00:00:00 2001
+From: Colin Cross <ccross@android.com>
+Date: Wed, 3 May 2017 22:45:32 -0700
+Subject: [PATCH 4/4] Silence 694 warnings
+
+And turn on -Wall -Werror.
+
+Test: builds
+Change-Id: I372f69715f7a5ee5d6f72bb9f766f19d5602f492
+---
+ Android.bp | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Android.bp b/Android.bp
+index 3123189..b45a525 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -39,6 +39,12 @@ cc_library_shared {
+         "-D__HAVE_BUILTIN_BSWAP16__",
+         "-D__HAVE_BUILTIN_BSWAP32__",
+         "-D__HAVE_BUILTIN_BSWAP64__",
++
++        "-Wno-unused-parameter",
++        "-Wno-sign-compare",
++        "-Wno-pointer-arith",
++        "-Wall",
++        "-Werror",
+     ],
+     shared_libs: ["libnfnetlink"],
+ }
+-- 
+2.14.1
+

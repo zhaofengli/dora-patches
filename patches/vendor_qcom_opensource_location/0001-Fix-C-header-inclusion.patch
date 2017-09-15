@@ -1,0 +1,49 @@
+From 949d46fa517ceacda8c306b8c040c0f2964f76f6 Mon Sep 17 00:00:00 2001
+From: Zhaofeng Li <hello@zhaofeng.li>
+Date: Fri, 15 Sep 2017 15:47:07 +0800
+Subject: [PATCH] Fix C header inclusion
+
+Builds on android-8.0.0_r11
+---
+ loc_api/ds_api/Android.mk      | 6 ++++++
+ loc_api/loc_api_v02/Android.mk | 7 +++++++
+ 2 files changed, 13 insertions(+)
+
+diff --git a/loc_api/ds_api/Android.mk b/loc_api/ds_api/Android.mk
+index 22034c5..8094661 100644
+--- a/loc_api/ds_api/Android.mk
++++ b/loc_api/ds_api/Android.mk
+@@ -39,6 +39,12 @@ LOCAL_C_INCLUDES := \
+     $(TARGET_OUT_HEADERS)/gps.utils \
+     $(TARGET_OUT_HEADERS)/data/inc
+ 
++#LOCAL_C_INCLUDES += \
++#    hardware/qcom/gps/msm8994/core \
++#    hardware/qcom/gps/msm8994/utils \
++#    hardware/qcom/gps/msm8994/platform_lib_abstractions
++
++LOCAL_HEADER_LIBRARIES := libgps.utils_headers libloc_core_headers
+ 
+ LOCAL_PRELINK_MODULE := false
+ 
+diff --git a/loc_api/loc_api_v02/Android.mk b/loc_api/loc_api_v02/Android.mk
+index 9cc666f..811a1be 100644
+--- a/loc_api/loc_api_v02/Android.mk
++++ b/loc_api/loc_api_v02/Android.mk
+@@ -58,6 +58,13 @@ LOCAL_C_INCLUDES := \
+ 
+ LOCAL_PRELINK_MODULE := false
+ 
++#LOCAL_C_INCLUDES += \
++#    hardware/qcom/gps/msm8994/core \
++#    hardware/qcom/gps/msm8994/utils \
++#    hardware/qcom/gps/msm8994/platform_lib_abstractions
++
++LOCAL_HEADER_LIBRARIES := libgps.utils_headers libloc_core_headers
++
+ include $(BUILD_SHARED_LIBRARY)
+ 
+ endif # not BUILD_TINY_ANDROID
+-- 
+2.14.1
+

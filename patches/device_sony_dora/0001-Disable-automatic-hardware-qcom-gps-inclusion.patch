@@ -1,0 +1,28 @@
+From cc303f803127b1412e808534d8777e6288593086 Mon Sep 17 00:00:00 2001
+From: Zhaofeng Li <hello@zhaofeng.li>
+Date: Fri, 15 Sep 2017 15:52:34 +0800
+Subject: [PATCH] Disable automatic hardware/qcom/gps inclusion
+
+device/sony/common selects hardware/qcom/gps/msm8994
+
+Builds on android-8.0.0_r11
+---
+ BoardConfig.mk | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index fa52b66..b2f5829 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -24,6 +24,8 @@ NXP_CHIP_TYPE_FW := PN547C2
+ 
+ BOARD_KERNEL_CMDLINE += androidboot.hardware=dora
+ 
++USE_DEVICE_SPECIFIC_GPS := true
++
+ # Recovery config
+ BOARD_SONY_INIT_FLAGS += -DDEV_BLOCK_FOTA_NUM="45"
+ BOARD_SONY_INIT_FLAGS += -DDEV_BLOCK_FOTA_MAJOR="259"
+-- 
+2.14.1
+

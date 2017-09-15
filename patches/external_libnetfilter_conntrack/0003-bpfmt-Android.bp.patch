@@ -1,0 +1,96 @@
+From 561f806dc3e7fe5191ee561d269125e996b1823c Mon Sep 17 00:00:00 2001
+From: Colin Cross <ccross@android.com>
+Date: Wed, 3 May 2017 22:44:02 -0700
+Subject: [PATCH 3/4] bpfmt Android.bp
+
+Fix style in Android.bp using bpfmt -w Android.bp
+
+Test: builds
+Change-Id: I12c833db07692f01ad97a5e2c8fd44b0384e5aa8
+---
+ Android.bp | 66 +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 35 insertions(+), 31 deletions(-)
+
+diff --git a/Android.bp b/Android.bp
+index b687e97..3123189 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -1,40 +1,44 @@
+ sub_srcs = [
+-        "src/main.c",
+-        "src/callback.c",
+-        "src/conntrack/api.c",
+-        "src/conntrack/bsf.c",
+-        "src/conntrack/compare.c",
+-        "src/conntrack/copy.c",
+-        "src/conntrack/filter.c",
+-        "src/conntrack/filter_dump.c",
+-        "src/conntrack/getter.c",
+-        "src/conntrack/grp.c",
+-        "src/conntrack/grp_getter.c",
+-        "src/conntrack/grp_setter.c",
+-        "src/conntrack/setter.c",
+-        "src/conntrack/snprintf.c",
+-        "src/conntrack/snprintf_default.c",
+-        "src/conntrack/snprintf_xml.c",
+-        "src/conntrack/stack.c",
+-        "src/conntrack/parse.c",
+-        "src/conntrack/objopt.c",
+-        "src/conntrack/build.c",
+-        "src/conntrack/labels.c",
+-        "src/expect/api.c",
+-        "src/expect/build.c",
+-        "src/expect/compare.c",
+-        "src/expect/getter.c",
+-        "src/expect/parse.c",
+-        "src/expect/setter.c",
+-        "src/expect/snprintf.c",
+-        "src/expect/snprintf_default.c",
+-        "src/expect/snprintf_xml.c",
++    "src/main.c",
++    "src/callback.c",
++    "src/conntrack/api.c",
++    "src/conntrack/bsf.c",
++    "src/conntrack/compare.c",
++    "src/conntrack/copy.c",
++    "src/conntrack/filter.c",
++    "src/conntrack/filter_dump.c",
++    "src/conntrack/getter.c",
++    "src/conntrack/grp.c",
++    "src/conntrack/grp_getter.c",
++    "src/conntrack/grp_setter.c",
++    "src/conntrack/setter.c",
++    "src/conntrack/snprintf.c",
++    "src/conntrack/snprintf_default.c",
++    "src/conntrack/snprintf_xml.c",
++    "src/conntrack/stack.c",
++    "src/conntrack/parse.c",
++    "src/conntrack/objopt.c",
++    "src/conntrack/build.c",
++    "src/conntrack/labels.c",
++    "src/expect/api.c",
++    "src/expect/build.c",
++    "src/expect/compare.c",
++    "src/expect/getter.c",
++    "src/expect/parse.c",
++    "src/expect/setter.c",
++    "src/expect/snprintf.c",
++    "src/expect/snprintf_default.c",
++    "src/expect/snprintf_xml.c",
+ ]
+ 
+ cc_library_shared {
+     name: "libnetfilter_conntrack",
+     export_include_dirs: ["include"],
+     srcs: sub_srcs,
+-    cflags: [ "-D__HAVE_BUILTIN_BSWAP16__", "-D__HAVE_BUILTIN_BSWAP32__", "-D__HAVE_BUILTIN_BSWAP64__" ],
++    cflags: [
++        "-D__HAVE_BUILTIN_BSWAP16__",
++        "-D__HAVE_BUILTIN_BSWAP32__",
++        "-D__HAVE_BUILTIN_BSWAP64__",
++    ],
+     shared_libs: ["libnfnetlink"],
+ }
+-- 
+2.14.1
+

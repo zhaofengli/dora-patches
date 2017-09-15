@@ -1,0 +1,29 @@
+From 9b0b71cdc5f8270b4ab78021edf2b91625030082 Mon Sep 17 00:00:00 2001
+From: AndroPlus <hosigumayuugi@gmail.com>
+Date: Sat, 29 Jul 2017 12:08:10 +0900
+Subject: [PATCH 2/2] mm-video: Disable proprietary extension
+
+Change-Id: Icf0bac6393c8dfcd2c20a3392d0468c8bd80824a
+---
+ msm8998/mm-video-v4l2/vidc/venc/Android.mk | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/msm8998/mm-video-v4l2/vidc/venc/Android.mk b/msm8998/mm-video-v4l2/vidc/venc/Android.mk
+index 67c5b48..3fd5a9a 100644
+--- a/msm8998/mm-video-v4l2/vidc/venc/Android.mk
++++ b/msm8998/mm-video-v4l2/vidc/venc/Android.mk
+@@ -53,9 +53,11 @@ ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_SUPPORT_VQZIP)),true)
+ libmm-venc-def += -D_VQZIP_
+ endif
+ 
++ifneq ($(QCPATH),)
+ ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_SUPPORT_PQ)),true)
+ libmm-venc-def += -D_PQ_
+ endif
++endif
+ 
+ ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_USE_FLAG_MSM8226)),true)
+ libmm-venc-def += -D_MSM8226_
+-- 
+2.14.1
+

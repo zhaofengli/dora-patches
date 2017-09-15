@@ -1,0 +1,50 @@
+From 83dd36561e5b777f938a320cdc035d5b58640cee Mon Sep 17 00:00:00 2001
+From: AndroPlus <hosigumayuugi@gmail.com>
+Date: Sat, 29 Jul 2017 12:08:56 +0900
+Subject: [PATCH 1/2] venc: Fix VQZip issue
+
+Change-Id: I8e6a260f6329381aac398aba284950a6c15e6d11
+---
+ .../vidc/venc/inc/video_encoder_device_v4l2.h         | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/msm8998/mm-video-v4l2/vidc/venc/inc/video_encoder_device_v4l2.h b/msm8998/mm-video-v4l2/vidc/venc/inc/video_encoder_device_v4l2.h
+index fab7317..bdc4cf1 100644
+--- a/msm8998/mm-video-v4l2/vidc/venc/inc/video_encoder_device_v4l2.h
++++ b/msm8998/mm-video-v4l2/vidc/venc/inc/video_encoder_device_v4l2.h
+@@ -35,9 +35,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include "QComOMXMetadata.h"
+ #include "OMX_QCOMExtns.h"
+ #include "qc_omx_component.h"
+-#ifdef _VQZIP_
+-#include "VQZip.h"
+-#endif
+ 
+ #ifdef _PQ_
+ #include "gpustats.h"
+@@ -311,6 +308,22 @@ enum rc_modes {
+         | RC_CBR_VFR | RC_CBR_CFR | RC_MBR_CFR | RC_MBR_VFR)
+ };
+ 
++#ifdef _VQZIP_
++struct VQZipConfig {
++    uint32_t dummy;
++    void* pSEIPayload;
++    uint16_t nWidth;
++    uint16_t nHeight;
++};
++
++struct VQZipStats {
++    uint32_t nCount;
++    uint32_t stats[16];
++};
++
++typedef int32_t VQZipStatus;
++#endif
++
+ class venc_dev
+ {
+     public:
+-- 
+2.14.1
+

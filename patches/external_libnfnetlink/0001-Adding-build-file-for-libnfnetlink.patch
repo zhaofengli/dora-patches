@@ -1,0 +1,36 @@
+From f012576471ddb03721a8f5737ba03c6c5feea78c Mon Sep 17 00:00:00 2001
+From: pkanwar <pkanwar@google.com>
+Date: Thu, 9 Feb 2017 08:31:11 -0800
+Subject: [PATCH 1/2] Adding build file for libnfnetlink.
+
+Bug: 35194770
+Test: NA.
+Change-Id: I33b13865f48a30c9dbee7fc86bdd0338bf2a200a
+---
+ Android.bp | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 Android.bp
+
+diff --git a/Android.bp b/Android.bp
+new file mode 100644
+index 0000000..b5a0a59
+--- /dev/null
++++ b/Android.bp
+@@ -0,0 +1,14 @@
++cc_library_shared {
++    name: "libnfnetlink",
++    export_include_dirs: ["include"],
++    srcs: [
++        "src/iftable.c",
++        "src/libnfnetlink.c",
++        "src/rtnl.c",
++    ],
++    cflags: [
++        "-Wno-sign-compare",
++	"-Wno-unused-parameter",
++	"-Wno-pointer-arith",
++    ],
++}
+-- 
+2.14.1
+
